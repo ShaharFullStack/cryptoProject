@@ -1,0 +1,48 @@
+.modal-content {
+    border: 3px solid purple;
+    background-image: linear-gradient(rgb(253, 190, 0), rgb(251, 226, 150));
+    color: rgb(95, 77, 0);
+    text-shadow: 2px 2px 3px rgba(218, 167, 1, 0.9);
+}
+
+.modal-header {
+    border-bottom: 2px solid purple;
+}
+
+.modal-body ul {
+    border: 2px solid purple;
+    font-weight: 600;
+    text-align: center;
+}
+
+.modal-body li {
+    border: 2px solid purple;
+    font-weight: 400;
+    text-align: center;
+    font-size: large;
+}
+
+.list-group-item,
+.row {
+    background-color: transparent;
+}
+
+.modal-footer {
+    border-top: 2px solid purple;
+}
+
+.btn-coinList {
+    font-weight: bold;
+    text-align: center;
+    color: #8e067e;
+    border: 2px rgb(128, 1, 139) solid;
+    background-color: transparent;
+    margin: auto;
+
+}
+
+.btn-coinList:hover {
+    color: black;
+    background-color: #8e067e;
+    ;
+}

@@ -1,0 +1,34 @@
+/* Video Background Container */
+.video-background {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Video Styling */
+#bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    object-fit: cover; 
+}
+
+/* Styling */
+.video-background .content {
+    z-index: 1;
+}
+
+/* Additional video settings */
+.video-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}

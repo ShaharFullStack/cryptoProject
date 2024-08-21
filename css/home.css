@@ -1,0 +1,89 @@
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.list-group-item,
+.row,
+.mt-3,
+.home-page,
+.card-body,
+.content,
+.col-md-2 {
+    background-color: transparent;
+}
+
+.col-md-2 {
+    width: 24%;
+    margin: 5px;
+}
+
+.card {
+    width: 100%;
+    border-radius: 40px 40px 40px 40px;
+    border: 3px purple solid;
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(rgba(248, 235, 118, 0.471), rgba(253, 169, 0, 0.591));
+    color: rgb(95, 77, 0);
+    text-shadow: 2px 2px 3px rgba(249, 204, 4, 0.9), 2px 7px 6px rgba(19, 17, 8, 0.9), 2px 2px 6px rgba(19, 17, 8, 0.3);
+}
+
+.card:hover {
+    font-weight: bolder;
+    text-shadow: none;
+}
+
+.progress-bar-animated {
+    width: 100%
+}
+
+.coinLogo {
+    width: 20%;
+    height: 20%;
+    margin: 5px;
+    box-shadow: 2px 2px 4px gray, 2px 2px 8px black;
+}
+
+@media only screen and (max-width: 1175px) {
+
+    h2 {
+        font-size: 70px;
+    }
+
+    .col-md-2 {
+        width: 30%;
+        margin: 4px;
+    }
+}
+
+@media only screen and (max-width:770px) {
+
+    h2 {
+        font-size: 50px;
+    }
+
+    .col-md-2 {
+        width: 40%;
+        margin: 2px;
+    }
+
+
+}
+
+@media only screen and (max-width:470px) {
+
+    h2 {
+        font-size: 35px;
+    }
+
+    .col-md-2 {
+        width: 70%;
+        margin: 2px;
+    }
+
+
+}
