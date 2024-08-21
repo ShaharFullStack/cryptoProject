@@ -11,13 +11,11 @@
 
 .modal-body ul {
     border: 2px solid purple;
-    font-weight: 600;
     text-align: center;
 }
 
 .modal-body li {
     border: 2px solid purple;
-    font-weight: 400;
     text-align: center;
     font-size: large;
 }

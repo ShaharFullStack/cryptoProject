@@ -1,7 +1,7 @@
 import { fetchData } from './services.js';
 import { selectedCoins } from './util.js';
 
-export function loadReports() { // Export the function for use in other files
+export function loadReports() { 
     if (selectedCoins.length === 0) {
         $('#main-content').html(`<div class="reports-page"><h2>Real-Time Reports</h2><p>No coins selected. Please select coins to display the report.</p><footer><h3>All rights reserved to ©ShaharMaoz ${new Date().getFullYear()}</h3></footer>`);
         return;
@@ -15,14 +15,31 @@ export function loadReports() { // Export the function for use in other files
     });
 
     const chart = new CanvasJS.Chart("chartContainer", {
-        title: { text: "Real-time Selected Coins Chart" },
-        axisX: { title: "Time", valueFormatString: "HH:mm:ss" },
-        axisY: { title: "Price in USD", includeZero: false },
-        legend: { verticalAlign: "top" },
+        animationEnabled: true,
+        title: { text: "Real-time Cryptocurrency Analysis" },
+        axisX: {
+            valueFormatString: "HH:mm:ss",
+            title: "Time",
+        },
+        axisY: {
+            title: "Price in USD",
+            includeZero: false
+        },
+        legend: {
+            verticalAlign: "top",
+            horizontalAlign: "right",
+            dockInsidePlotArea: true
+        },
+        toolTip: {
+            shared: true
+        },
         data: selectedCoins.map(coin => ({
-            type: "line",
             name: coin,
             showInLegend: true,
+            legendMarkerType: "square",
+            type: "area",
+            color: getRandomColor(),
+            markerSize: 0,
             dataPoints: dataPoints[coin]
         }))
     });
@@ -49,4 +66,15 @@ export function loadReports() { // Export the function for use in other files
     return function cleanup() {
         clearInterval(intervalId);
     };
+}
+
+function getRandomColor() {
+    const colors = [
+        "rgba(40,175,101,0.6)",
+        "rgba(0,75,141,0.7)",
+        "rgba(255,99,71,0.6)",
+        "rgba(70,130,180,0.6)",
+        "rgba(255,215,0,0.6)"
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
 }
