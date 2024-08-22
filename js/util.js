@@ -38,11 +38,29 @@ function renderCoinInfo(data) {
     const ilsPrice = formatCurrency(data.market_data.current_price.ils, 'ILS', 'he-IL');
 
     return `
-        <img src="${data.image.small}" class="coinLogo" alt="${data.name}">
         <p>USD: ${usdPrice}</p>
         <p>EUR: ${eurPrice}</p>
         <p>ILS: ${ilsPrice}</p>
     `;
+}
+
+// Function to search coins
+export function searchCoins() {
+    const query = $('#search-input').val().toLowerCase();
+    $.ajax({
+        url: 'https://api.coingecko.com/api/v3/coins/list',
+        method: 'GET',
+        success: function (data) {
+            const filteredCoins = data.filter(coin =>
+                coin.name.toLowerCase().includes(query) ||
+                coin.symbol.toLowerCase().includes(query)
+            );
+            displayCoins(filteredCoins);
+        },
+        error: function () {
+            $('#main-content').html('<p>Error searching coins. Please try again later.</p>');
+        }
+    });
 }
 
 export function handleMoreInfo(coinId) {
@@ -75,6 +93,8 @@ export function handleMoreInfo(coinId) {
     $(collapseId).collapse('toggle');
 }
 
+
+
 // Function to format currency
 function formatCurrency(value, currency, locale) {
     return value.toLocaleString(locale, { style: 'currency', currency: currency });
@@ -102,7 +122,9 @@ export function createCoinCard(coin) {
                 <div class="card-body">
                     <div class="content">
                         <div class="d-flex justify-content-between align-items-center">
+                         <img class="card-img" src="${coin.image}" alt="${coin}">
                             <h4 class="card-title">${coin.symbol.toUpperCase()}</h4>
+                            
                             <label class="switch">
                                 <input type="checkbox" class="coin-switch" data-coin="${coin.symbol.toUpperCase()}" ${isChecked}>
                                 <span class="slider round"></span>

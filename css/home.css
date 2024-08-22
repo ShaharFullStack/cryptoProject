@@ -29,7 +29,6 @@
     overflow: hidden;
     background-image: linear-gradient(rgba(248, 235, 118, 0.471), rgba(253, 169, 0, 0.591));
     color: rgb(95, 77, 0);
-    text-shadow: 2px 2px 3px rgba(249, 204, 4, 0.9), 2px 7px 6px rgba(19, 17, 8, 0.9), 2px 2px 6px rgba(19, 17, 8, 0.3);
 }
 
 .card:hover {
@@ -41,11 +40,10 @@
     width: 100%
 }
 
-.coinLogo {
-    width: 20%;
-    height: 20%;
-    margin: 5px;
-    box-shadow: 2px 2px 4px gray, 2px 2px 8px black;
+.card-img {
+    width: 25%;
+    height: 25%;
+    margin: 3px;
 }
 
 @media only screen and (max-width: 1175px) {

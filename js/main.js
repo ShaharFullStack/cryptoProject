@@ -1,7 +1,7 @@
 import { loadHome } from './home.js';
 import { loadReports } from './reports.js';
 import { loadAbout, loadAboutProject } from './pages.js';
-import { showSelectedCoins } from './util.js';
+import { showSelectedCoins, searchCoins } from './util.js';
 
 // Main function to initialize event listeners
 $(document).ready(function () {

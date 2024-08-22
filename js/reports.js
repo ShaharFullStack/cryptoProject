@@ -69,12 +69,10 @@ export function loadReports() {
 }
 
 function getRandomColor() {
-    const colors = [
-        "rgba(40,175,101,0.6)",
-        "rgba(0,75,141,0.7)",
-        "rgba(216, 112, 147, 0.603)",
-        "rgba(70,130,180,0.6)",
-        "rgba(255,215,0,0.6)"
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    const a = (Math.random() * 0.5) + 0.2; 
+    return `rgba(${r},${g},${b},${a})`;
 }
+
