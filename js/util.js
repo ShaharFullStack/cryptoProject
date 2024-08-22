@@ -34,7 +34,6 @@ function renderCoinInfo(data) {
     const ilsPrice = formatCurrency(data.market_data.current_price.ils, 'ILS', 'he-IL');
 
     return `
-        <img src="${data.image.small}" class="coinLogo" alt="${data.name}">
         <p>USD: ${usdPrice}</p>
         <p>EUR: ${eurPrice}</p>
         <p>ILS: ${ilsPrice}</p>
