@@ -44,20 +44,30 @@ function renderCoinInfo(data) {
 export function searchCoins() {
     $('#search-input').on('input', function () {
         const query = $(this).val().toLowerCase();
+<<<<<<< HEAD
 
         // Make an AJAX request to fetch the full list of coins
+=======
+>>>>>>> 8527f0cb07fa514f950be0fd15d37bdaeb3a187b
         $.ajax({
             url: 'https://api.coingecko.com/api/v3/coins/list',
             method: 'GET',
             success: function (data) {
+<<<<<<< HEAD
                 // Filter the coins based on the search query (name or symbol)
+=======
+>>>>>>> 8527f0cb07fa514f950be0fd15d37bdaeb3a187b
                 const filteredCoins = data.filter(coin =>
                     coin.name.toLowerCase().includes(query) ||
                     coin.symbol.toLowerCase().includes(query)
                 );
+<<<<<<< HEAD
 
                 // Display the filtered coins
                 displayCoins(filteredCoins);
+=======
+                displayCoins(filteredCoins); // Update the displayed coins based on the search
+>>>>>>> 8527f0cb07fa514f950be0fd15d37bdaeb3a187b
             },
             error: function () {
                 $('#main-content').html('<p>Error searching coins. Please try again later.</p>');
@@ -65,12 +75,21 @@ export function searchCoins() {
         });
     });
 }
+<<<<<<< HEAD
     // Display the coins
+=======
+
+// Display filtered coins
+>>>>>>> 8527f0cb07fa514f950be0fd15d37bdaeb3a187b
 function displayCoins(coins) {
     const coinsListHtml = coins.map(coin => createCoinCard(coin)).join('');
     $('#filtered-coins-list').html(coinsListHtml);
 
+<<<<<<< HEAD
     // Attach necessary event listeners to the newly rendered cards
+=======
+    // Attach event listeners to the newly rendered elements
+>>>>>>> 8527f0cb07fa514f950be0fd15d37bdaeb3a187b
     handleSwitchChange();
     $('.more-info').click(function () {
         handleMoreInfo($(this).data('coin-id'));
