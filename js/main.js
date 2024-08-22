@@ -12,10 +12,8 @@ $(document).ready(function () {
     $('#reports').click(() => loadReports());
     $('#about').click(() => loadAbout());
     $('#about-project').click(() => loadAboutProject());
-    $('#search-button').click((e) => {
-        e.preventDefault();
+
         searchCoins();
     });
 
     $('#show-selected-coins').click(() => showSelectedCoins());
-});

@@ -29,11 +29,15 @@
     overflow: hidden;
     background-image: linear-gradient(rgba(248, 235, 118, 0.471), rgba(253, 169, 0, 0.591));
     color: rgb(95, 77, 0);
+    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, height 0.3s ease;
 }
 
 .card:hover {
     font-weight: bolder;
     text-shadow: none;
+    transform: translateY(-5px);
+    box-shadow: 3px 3px 6px black;
 }
 
 .progress-bar-animated {

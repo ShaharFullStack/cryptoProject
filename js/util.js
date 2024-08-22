@@ -34,7 +34,6 @@ function renderCoinInfo(data) {
     const ilsPrice = formatCurrency(data.market_data.current_price.ils, 'ILS', 'he-IL');
 
     return `
-        <img src="${data.image.small}" class="coinLogo" alt="${data.name}">
         <p>USD: ${usdPrice}</p>
         <p>EUR: ${eurPrice}</p>
         <p>ILS: ${ilsPrice}</p>
@@ -45,15 +44,20 @@ function renderCoinInfo(data) {
 export function searchCoins() {
     $('#search-input').on('input', function () {
         const query = $(this).val().toLowerCase();
+
+        // Make an AJAX request to fetch the full list of coins
         $.ajax({
             url: 'https://api.coingecko.com/api/v3/coins/list',
             method: 'GET',
             success: function (data) {
+                // Filter the coins based on the search query (name or symbol)
                 const filteredCoins = data.filter(coin =>
                     coin.name.toLowerCase().includes(query) ||
                     coin.symbol.toLowerCase().includes(query)
                 );
-                displayCoins(filteredCoins); // Update the displayed coins based on the search
+
+                // Display the filtered coins
+                displayCoins(filteredCoins);
             },
             error: function () {
                 $('#main-content').html('<p>Error searching coins. Please try again later.</p>');
@@ -61,13 +65,12 @@ export function searchCoins() {
         });
     });
 }
-
-// Display filtered coins
+    // Display the coins
 function displayCoins(coins) {
     const coinsListHtml = coins.map(coin => createCoinCard(coin)).join('');
     $('#filtered-coins-list').html(coinsListHtml);
 
-    // Attach event listeners to the newly rendered elements
+    // Attach necessary event listeners to the newly rendered cards
     handleSwitchChange();
     $('.more-info').click(function () {
         handleMoreInfo($(this).data('coin-id'));
