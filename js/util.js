@@ -3,6 +3,7 @@ import { cacheDuration } from './home.js';
 export let selectedCoins = [];
 let cache = [];
 
+// Handle switch changes (selecting coins)
 export function handleSwitchChange() {
     $('.coin-switch').off('change').on('change', function () {
         const coin = $(this).data('coin').toUpperCase();
@@ -12,22 +13,17 @@ export function handleSwitchChange() {
             if (selectedCoins.length < 5) {
                 selectedCoins.push(coin);
             } else {
-                // Show the Bootstrap toast notification
-                const toastElement = $('#coin-limit-toast');
-                const toast = new bootstrap.Toast(toastElement);
-                toast.show();
-
-                // Uncheck the 6th coin
+                showToast('You can select up to 5 coins for Live Reports.');
                 this.checked = false;
             }
         } else {
             // Remove the coin if it's unselected
             selectedCoins = selectedCoins.filter(c => c !== coin);
         }
-
     });
 }
 
+// Render coin information
 function renderCoinInfo(data) {
     if (!data || !data.market_data || !data.image) {
         return '<p>Coin information is not available at the moment.</p>';
@@ -45,6 +41,48 @@ function renderCoinInfo(data) {
     `;
 }
 
+// Function to search coins dynamically as the user types
+export function searchCoins() {
+    $('#search-input').on('input', function () {
+        const query = $(this).val().toLowerCase();
+        $.ajax({
+            url: 'https://api.coingecko.com/api/v3/coins/list',
+            method: 'GET',
+            success: function (data) {
+                const filteredCoins = data.filter(coin =>
+                    coin.name.toLowerCase().includes(query) ||
+                    coin.symbol.toLowerCase().includes(query)
+                );
+                displayCoins(filteredCoins); // Update the displayed coins based on the search
+            },
+            error: function () {
+                $('#main-content').html('<p>Error searching coins. Please try again later.</p>');
+            }
+        });
+    });
+}
+
+// Display filtered coins
+function displayCoins(coins) {
+    const coinsListHtml = coins.map(coin => createCoinCard(coin)).join('');
+    $('#filtered-coins-list').html(coinsListHtml);
+
+    // Attach event listeners to the newly rendered elements
+    handleSwitchChange();
+    $('.more-info').click(function () {
+        handleMoreInfo($(this).data('coin-id'));
+    });
+}
+
+// Show toast notifications
+function showToast(message) {
+    const toastElement = $('#coin-limit-toast');
+    $('.toast-body').text(message);
+    const toast = new bootstrap.Toast(toastElement);
+    toast.show();
+}
+
+// Handle "More Info" button clicks
 export function handleMoreInfo(coinId) {
     const collapseId = `#collapse-${coinId}`;
     const infoId = `#info-${coinId}`;
@@ -80,7 +118,7 @@ function formatCurrency(value, currency, locale) {
     return value.toLocaleString(locale, { style: 'currency', currency: currency });
 }
 
-
+// Show selected coins in the modal
 export function showSelectedCoins() {
     const selectedCoinsList = $('#selected-coins-list');
     selectedCoinsList.empty();
@@ -94,6 +132,7 @@ export function showSelectedCoins() {
     }
 }
 
+// Create coin cards
 export function createCoinCard(coin) {
     const isChecked = selectedCoins.includes(coin.symbol.toUpperCase()) ? 'checked' : '';
     return `
@@ -102,6 +141,7 @@ export function createCoinCard(coin) {
                 <div class="card-body">
                     <div class="content">
                         <div class="d-flex justify-content-between align-items-center">
+                        <img class="card-img" src="${coin.image}" alt="${coin}">
                             <h4 class="card-title">${coin.symbol.toUpperCase()}</h4>
                             <label class="switch">
                                 <input type="checkbox" class="coin-switch" data-coin="${coin.symbol.toUpperCase()}" ${isChecked}>
