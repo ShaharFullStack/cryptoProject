@@ -15,8 +15,7 @@ export function loadHome() {
         fetchData(apiMarkets, {
             vs_currency: 'usd',
             order: 'market_cap_desc',
-            per_page: 25,
-            pages: 4,
+            per_page: 100,
         }, function (data) {
             localStorage.setItem('coinsData', JSON.stringify(data));
             localStorage.setItem('coinsDataTime', now.toString());
