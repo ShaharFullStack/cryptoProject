@@ -3,11 +3,18 @@ import { selectedCoins } from './util.js';
 
 export function loadReports() { 
     if (selectedCoins.length === 0) {
-        $('#main-content').html(`<div class="reports-page"><h2>Real-Time Reports</h2><p>No coins selected. Please select coins to display the report.</p><footer><h3>All rights reserved to ©ShaharMaoz ${new Date().getFullYear()}</h3></footer>`);
+        $('#main-content').html(`
+            <div class="reports-page">
+            <h2>Real-Time Reports</h2>
+            <p>No coins selected. Please select coins to display the report.</p>
+            <footer>
+                <h3>All rights reserved to ©ShaharMaoz ${new Date().getFullYear()}</h3>
+            </footer>`);
         return;
     }
-
-    $('#main-content').html('<h2>Real-Time Reports</h2><div id="chartContainer" class="chartContainer"></div>' + `<br><br><footer><h3>All rights reserved to ©ShaharMaoz ${new Date().getFullYear()}</h3></footer>`);
+    $('#parallax').html(`<button onclick="updateChart()">Change Colors</button>`)
+    $('#main-content').html('<h2>Real-Time Reports</h2><div id="chartContainer" class="chartContainer"></div>'
+         + `<footer><h3>All rights reserved to ©ShaharMaoz ${new Date().getFullYear()}</h3></footer>`);
 
     const dataPoints = {};
     selectedCoins.forEach(coin => {
@@ -68,7 +75,7 @@ export function loadReports() {
     };
 }
 
-function getRandomColor() {
+export function getRandomColor() {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);

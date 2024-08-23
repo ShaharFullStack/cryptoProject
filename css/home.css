@@ -6,6 +6,11 @@
     align-items: center;
 }
 
+.homeP {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .list-group-item,
 .row,
 .mt-3,

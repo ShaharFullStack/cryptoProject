@@ -1,7 +1,7 @@
 import { cacheDuration } from './home.js';
 
 export let selectedCoins = [];
-let cache = [];
+export let cache = [];
 
 // Handle switch changes (selecting coins)
 export function handleSwitchChange() {
@@ -40,32 +40,7 @@ function renderCoinInfo(data) {
     `;
 }
 
-// Function to search coins dynamically as the user types
-export function searchCoins() {
-    $('#search-input').on('input', function () {
-        const query = $(this).val().toLowerCase();
-    
-        // Merged and updated code based on the intended functionality
-        $.ajax({
-            url: 'https://api.coingecko.com/api/v3/coins/list',
-            method: 'GET',
-            success: function (data) {
-                const filteredCoins = data.filter(coin =>
-                    coin.name.toLowerCase().includes(query) ||
-                    coin.symbol.toLowerCase().includes(query)
-                );
-    
-                // Display the filtered coins
-                displayCoins(filteredCoins);
-            },
-            error: function () {
-                $('#main-content').html('<p>Error searching coins. Please try again later.</p>');
-            }
-        });
-    });
-    
-}
-    // Display the coins
+// Display the coins
 function displayCoins(coins) {
     const coinsListHtml = coins.map(coin => createCoinCard(coin)).join('');
     $('#filtered-coins-list').html(coinsListHtml);
@@ -134,6 +109,8 @@ export function showSelectedCoins() {
         });
     }
 }
+
+
 
 // Create coin cards
 export function createCoinCard(coin) {
