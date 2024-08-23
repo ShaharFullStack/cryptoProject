@@ -18,13 +18,13 @@
         const aboutProjectContent = `
             <div class="project-page">
                 <h2>About This Site</h2>
-                <p id="special">This website was created by Shahar Maoz</p> 
-                <ul id="special">and includes:</ul>
-                <li id="special">HTML, JavaScript, and CSS code</li>
-                <li id="special">Website Design</li>
-                <li id="special">Original Background Image Using AI Tools</li>
-                <li id="special">Original Background Video Using AI Tools</li>
-                <p id="special">For more awesome projects and amazing designs</p>
+                <p>This website was created by Shahar Maoz</p> 
+                <ul>and includes:</ul>
+                <li>HTML, JavaScript, and CSS code</li>
+                <li>Website Design</li>
+                <li>Original Background Image Using AI Tools</li>
+                <li>Original Background Video Using AI Tools</li>
+                <ul>For more awesome projects and amazing designs</ul>
                 <a href="https://github.com/ShaharFullStack">Visit My GitHub Page</a>
             </div>
         `;

@@ -41,7 +41,7 @@ function renderCoinInfo(data) {
 }
 
 // Display the coins
-function displayCoins(coins) {
+export function displayCoins(coins) {
     const coinsListHtml = coins.map(coin => createCoinCard(coin)).join('');
     $('#filtered-coins-list').html(coinsListHtml);
 
@@ -53,7 +53,7 @@ function displayCoins(coins) {
 }
 
 // Show toast notifications
-function showToast(message) {
+export function showToast(message) {
     const toastElement = $('#coin-limit-toast');
     $('.toast-body').text(message);
     const toast = new bootstrap.Toast(toastElement);
@@ -110,9 +110,6 @@ export function showSelectedCoins() {
     }
 }
 
-
-
-// Create coin cards
 export function createCoinCard(coin) {
     const isChecked = selectedCoins.includes(coin.symbol.toUpperCase()) ? 'checked' : '';
     return `
@@ -121,20 +118,20 @@ export function createCoinCard(coin) {
                 <div class="card-body">
                     <div class="content">
                         <div class="d-flex justify-content-between align-items-center">
-                        <img class="card-img" src="${coin.image}" alt="${coin}">
+                            <img class="card-img" src="${coin.image}" alt="${coin.symbol.toUpperCase()}">
                             <h4 class="card-title">${coin.symbol.toUpperCase()}</h4>
-                            <label class="switch">
-                                <input type="checkbox" class="coin-switch" data-coin="${coin.symbol.toUpperCase()}" ${isChecked}>
+                            <label class="checkbox switch">
+                                <input type="checkbox" class="coin-checkBox coin-switch" data-coin="${coin.symbol.toUpperCase()}" ${isChecked}>
                                 <span class="slider round"></span>
                             </label>
                         </div>
                         <p class="card-text">${coin.name}</p>
-                        <button class="btn btn-info more-info" data-coin-id="${coin.id}">More Info</button>
                         <div class="collapse mt-2" id="collapse-${coin.id}">
                             <div class="card card-body" id="info-${coin.id}">
-                                <!-- Additional info will be loaded here -->
+                            <!-- Additional info will be loaded here -->
                             </div>
-                        </div>
+                            </div>
+                            <button class="btn btn-info more-info" data-coin-id="${coin.id}">More Info</button>
                     </div>
                 </div>
             </div>

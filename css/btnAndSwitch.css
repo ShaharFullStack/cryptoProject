@@ -1,55 +1,3 @@
-/* Switch */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(216, 112, 147, 0.603);
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: rgb(217, 141, 222);
-    transition: .4s;
-}
-
-input:checked+.slider {
-    background-color: #8e067e;
-}
-
-input:checked+.slider:before {
-    transform: translateX(26px);
-}
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
-
 .btn-outline-success {
     font-weight: bold;
     color: rgb(250, 242, 16);
@@ -63,9 +11,10 @@ input:checked+.slider:before {
     background-color: rgb(252, 2, 85);
     
 }
-
+#changeColor,
 #show-selected-coins, 
 .btn-info, .btn-outline-success {
+    position: relative;
     font-family: monospace, sans-serif;
     color: rgb(253, 229, 7);
     background: #a80095;
@@ -81,8 +30,100 @@ input:checked+.slider:before {
 
 }
 
-
-input:focus+.slider {
-    box-shadow: 0 0 3px #fdd808;
-    border: 2px solid #fd08dc;
+/* Checkbox */
+.checkbox {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
 }
+
+.checkbox input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checkbox .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(216, 112, 147, 0.603);
+    transition: .4s;
+}
+
+.checkbox .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: rgb(217, 141, 222);
+    transition: .4s;
+}
+
+.checkbox input:checked + .slider {
+    background-color: #8e067e;
+}
+
+.checkbox input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.checkbox .slider.round {
+    border-radius: 34px;
+}
+
+.checkbox .slider.round:before {
+    border-radius: 50%;
+}
+
+/* Responsive design for smaller screens */
+@media only screen and (max-width: 990px) {
+    .checkbox {
+        width: 30px;
+        height: 14px;
+    }
+
+    .checkbox .slider:before {
+        width: 10px;
+        height: 10px;
+        transform: translateX(15px);
+    }
+
+    .checkbox input:checked + .slider:before {
+        transform: translateX(0px);
+    }
+    .btn-outline-success {
+        font-weight: normal;
+        font-size: smaller;
+    }
+    
+    .btn-outline-success:hover {
+        color: black;
+        border: 1px #8e067e solid;
+        background-color: rgb(252, 2, 85);
+        
+    }
+    
+    #show-selected-coins, 
+    .btn-info, .btn-outline-success {
+
+        font-weight: normal;
+        font-size: 12px;
+    }
+    #changeColor:hover,
+    .btn-info:hover,
+    .btn-outline-success:hover,
+    #show-selected-coins:hover {
+        color: black;
+        background: #ce02b6;
+        border: rgb(252, 2, 85) 1px solid;
+    
+    }
+}
+

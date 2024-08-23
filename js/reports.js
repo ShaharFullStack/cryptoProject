@@ -1,5 +1,5 @@
-import { fetchData } from './services.js';
-import { selectedCoins } from './util.js';
+import { fetchData } from "./services.js";
+import { selectedCoins } from "./util.js";
 
 export function loadReports() { 
     if (selectedCoins.length === 0) {
@@ -12,8 +12,7 @@ export function loadReports() {
             </footer>`);
         return;
     }
-    $('#parallax').html(`<button onclick="updateChart()">Change Colors</button>`)
-    $('#main-content').html('<h2>Real-Time Reports</h2><div id="chartContainer" class="chartContainer"></div>'
+    $('#main-content').html('<h2>Real-Time Reports</h2><button id="changeColor">Change Colors</button><div id="chartContainer" class="chartContainer"></div>'
          + `<footer><h3>All rights reserved to ©ShaharMaoz ${new Date().getFullYear()}</h3></footer>`);
 
     const dataPoints = {};
@@ -70,6 +69,10 @@ export function loadReports() {
     updateChart();
     const intervalId = setInterval(updateChart, 2000);
 
+    $('#changeColor').click(function () {
+        changeChartColors(chart);
+    });
+
     return function cleanup() {
         clearInterval(intervalId);
     };
@@ -83,3 +86,9 @@ export function getRandomColor() {
     return `rgba(${r},${g},${b},${a})`;
 }
 
+function changeChartColors(chart) {
+    chart.options.data.forEach(dataSeries => {
+        dataSeries.color = getRandomColor();
+    });
+    chart.render();
+}

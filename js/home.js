@@ -30,9 +30,9 @@ export function loadHome() {
     }
 }
 export function searchCoins() {
-    const query = $('#search-input').val().toLowerCase(); // Get the user's input and convert it to lowercase
-    const cachedData = JSON.parse(localStorage.getItem('coinsData')); // Retrieve the coin data from local storage
-
+    const query = $('#search-input').val().toLowerCase(); 
+    const cachedData = JSON.parse(localStorage.getItem('coinsData')); 
+    
     if (!cachedData) {
         $('#main-content').html('<p>No data available for search. Please try again later.</p>');
         return;
@@ -44,7 +44,7 @@ export function searchCoins() {
     );
 
     if (filteredCoins.length > 0) {
-        displayCoins(filteredCoins); // Display the filtered coins from local storage
+        displayCoins(filteredCoins); 
     } else {
         $('#main-content').html('<p>No matching coins found for your search.</p>');
     }
@@ -62,10 +62,9 @@ export function displayCoins(coins) {
         </div>`;
     $('#main-content').html(content);
 
-    // Attach event listeners after dynamic content is loaded
-    handleSwitchChange(); // Attach event listeners for coin switches
+    handleSwitchChange();
 
     $('.more-info').click(function () {
-        handleMoreInfo($(this).data('coin-id')); // Handle the More Info button clicks
+        handleMoreInfo($(this).data('coin-id')); 
     });
 }
