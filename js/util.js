@@ -130,9 +130,9 @@ export function createCoinCard(coin) {
                             <div class="card card-body" id="info-${coin.id}">
                             <!-- Additional info will be loaded here -->
                             </div>
-                            </div>
+                            </div><br>
                             <button class="btn btn-info more-info" data-coin-id="${coin.id}">More Info</button>
-                    </div>
+                            </div>
                 </div>
             </div>
         </div>`;

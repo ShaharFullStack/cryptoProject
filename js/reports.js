@@ -25,11 +25,11 @@ export function loadReports() {
         title: { text: "Real-time Cryptocurrency Analysis" },
         axisX: {
             valueFormatString: "HH:mm:ss",
-            title: "Time",
+            title: "2s",
         },
         axisY: {
             title: "Price in USD",
-            includeZero: false
+            includeZero: true,
         },
         legend: {
             verticalAlign: "top",

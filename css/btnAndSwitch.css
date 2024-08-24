@@ -52,7 +52,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(216, 112, 147, 0.603);
-    transition: .4s;
+    transition: 0.4s;
 }
 
 .checkbox .slider:before {
@@ -63,7 +63,7 @@
     left: 4px;
     bottom: 4px;
     background-color: rgb(217, 141, 222);
-    transition: .4s;
+    transition: 0.4s;
 }
 
 .checkbox input:checked + .slider {
