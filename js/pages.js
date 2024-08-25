@@ -1,39 +1,46 @@
 
-// Function to load the About section
+// Function to load the About Me section
 export function loadAbout() {
-    const aboutContent = `
-        <div class="about-page">
-            <h2>About Shahar's Cryptonite</h2>
-            <p><strong>Shahar's Cryptonite</strong> is a comprehensive platform designed to provide real-time insights and updates on cryptocurrency trends and data. Whether you're a casual observer, a trader, or a crypto enthusiast, this website is built to deliver reliable and up-to-date information on the digital currency market.</p>
-            <h2>Key Features</h2>
-            <ul>
-                <li><strong>Real-Time Reports:</strong> Track the live performance of your selected cryptocurrencies with our dynamic charts that update in real-time. Monitor price fluctuations, identify trends, and make informed decisions with the most accurate data at your fingertips.</li>
-                <li><strong>Customizable Dashboard:</strong> Select up to five cryptocurrencies of your choice to create a personalized report that suits your interests and needs. Tailor the display to focus on the data that matters most to you.</li>
-                <li><strong>Interactive Visuals:</strong> Our platform offers engaging and responsive visualizations that allow users to see trends and data points in a clear and accessible format. You can even change the color scheme of the charts to match your preferences.</li>
-                <li><strong>Comprehensive Data:</strong> From market prices in multiple currencies to detailed information on each cryptocurrency, our site is designed to be your go-to resource for understanding the crypto landscape.</li>
-            </ul>
-            <h2>Mission</h2>
-            <p>Our goal is to simplify cryptocurrency tracking and make the vast amount of data accessible and visually appealing. We aim to create a platform where users of all levels can find value, whether you’re new to crypto or an experienced trader.</p>
-        </div>
+    const aboutMeContent = `
+    <div class="aboutImg">
+    <div class="about-page">
+    <h2>About Shahar Maoz</h2>
+    <h6>Hi! I'm Shahar Maoz, a developer with a passion for merging technology and creativity. My expertise lies in frontend and backend development, where I create engaging and responsive applications using technologies like React, TypeScript, and JavaScript.</h6>
+    <h6>Beyond coding, I’m also a husband, a father, a musician and music teacher, which has allowed me to take an artistic approach to problem-solving in my projects. My goal is to craft user-centric digital experiences that are both visually appealing and functionally robust.</h6>
+    <h2>Why I Built Shahar's Cryptonite</h2>
+    <h6><strong>Shahar's Cryptonite</strong> started as an educational project and became a drive to simplify cryptocurrency tracking and present complex data in a clear, accessible format. Whether you're a trader or a crypto hodler, this platform offers the tools you need to stay informed and make data-driven decisions.</h6>
+    <h2>My Journey</h2>
+    <h6>I’ve always been fascinated by the intersection of art and technology. My experience ranges from creating dynamic web apps to teaching and composing music. Combining these passions, I aim to bring innovation and creativity into every project I undertake.</h6>
+    </div>
+    </div>
     `;
-    $('#main-content').html(aboutContent + `<footer><h3>All rights reserved to ©ShaharMaoz ${new Date().getFullYear()}</h3></footer>`);
+    $('#main-content').html(
+        aboutMeContent +
+        `<footer><h3>All rights reserved to ©Shahar Maoz ${new Date().getFullYear()}</h3></footer>`
+    );
 }
 
 
-    // Function to load the About Project section
-    export function loadAboutProject() {
-        const aboutProjectContent = `
-            <div class="project-page">
-                <h2>About This Site</h2>
-                <p>This website was created by Shahar Maoz</p> 
-                <ul>and includes:</ul>
-                <li>HTML, JavaScript, and CSS code</li>
-                <li>Website Design</li>
-                <li>Original Background Image Using AI Tools</li>
-                <li>Original Background Video Using AI Tools</li>
-                <ul>For more awesome projects and amazing designs</ul>
-                <a href="https://github.com/ShaharFullStack">Visit My GitHub Page</a>
-            </div>
-        `;
-        $('#main-content').html(aboutProjectContent + `<footer><h3>All rights reserved to ©ShaharMaoz ${new Date().getFullYear()}</h3></footer>`);
-    }
+
+// Function to load the About the Project section
+export function loadAboutProject() {
+    const aboutProjectContent = `
+        <div class="project-page">
+            <h2>About This Project</h2>
+            <p>This website, <strong>Shahar's Cryptonite</strong>, was built with a focus on providing users with real-time cryptocurrency data in an intuitive and visually appealing way. The project showcases my skills in frontend development while incorporating creativity through custom visuals.</p>
+            <h2>Technologies Used</h2>
+            <ul>
+                <li>HTML, JavaScript, and CSS</li>
+                <li>Responsive Web Design with modern layouts</li>
+                <li>Original Background Image and Video created using AI Tools</li>
+            </ul>
+            <h2>Want to See More?</h2>
+            <p>If you're interested in exploring more of my work or collaborating on a project, check out my GitHub:</p>
+            <a href="https://github.com/ShaharFullStack" target="_blank">Visit My GitHub Page</a>
+        </div>
+    `;
+    $('#main-content').html(
+        aboutProjectContent +
+        `<footer><h3>All rights reserved to ©Shahar Maoz ${new Date().getFullYear()}</h3></footer>`
+    );
+}

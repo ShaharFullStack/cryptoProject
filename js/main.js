@@ -5,6 +5,7 @@ import { showSelectedCoins } from './util.js';
 const clear = " ";
 // Main function to initialize event listeners
 $(document).ready(function () {
+
     loadHome();
 
     // Event listeners for navigation
@@ -26,6 +27,17 @@ $(document).ready(function () {
     );
     // Change coins colors on chart
     $('#changeColor').click(function () {
-        changeChartColors(chart);
+        changeChartColors(chart && chart2);
     });
+    // Display the coins
+    function displayCoins(coins) {
+        const coinsListHtml = coins.map(coin => createCoinCard(coin)).join('');
+        $('#filtered-coins-list').html(coinsListHtml);
+
+        handleSwitchChange();
+
+        $('.more-info').click(function () {
+            handleMoreInfo($(this).data('coin-id')); // Data retrieval
+        });
+    }
 });

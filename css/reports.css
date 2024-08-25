@@ -4,6 +4,11 @@
     width: 100%;
 }
 
+#chart2Container {
+    height: 470px;
+    width: 100%;
+}
+
 .container-fluid {
     background-attachment: fixed;
     background-size: contain;

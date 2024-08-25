@@ -22,10 +22,10 @@ export function loadReports() {
 
     const chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
-        title: { text: "Real-time Cryptocurrency Analysis" },
+        title: { text: "Shahar's Real-Time Analysis" },
         axisX: {
             valueFormatString: "HH:mm:ss",
-            title: "2s",
+            title: "Updated every 2 seconds",
         },
         axisY: {
             title: "Price in USD",
@@ -42,10 +42,10 @@ export function loadReports() {
         data: selectedCoins.map(coin => ({
             name: coin,
             showInLegend: true,
-            legendMarkerType: "square",
+            legendMarkerType: "circle",
             type: "area",
             color: getRandomColor(),
-            markerSize: 0,
+            markerSize: 1,
             dataPoints: dataPoints[coin]
         }))
     });
@@ -82,13 +82,12 @@ export function getRandomColor() {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
-    const a = (Math.random() * 0.5) + 0.2; 
+    const a = (Math.random() * 0.5) + 0.6; 
     return `rgba(${r},${g},${b},${a})`;
 }
 
 function changeChartColors(chart) {
-    chart.options.data.forEach(dataSeries => {
-        dataSeries.color = getRandomColor();
+    chart.options.data.forEach(dataSeries => {dataSeries.color = getRandomColor();
     });
     chart.render();
 }
