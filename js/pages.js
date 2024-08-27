@@ -32,7 +32,8 @@ export function loadAboutProject() {
             <ul>
                 <li>HTML, JavaScript, and CSS</li>
                 <li>Responsive Web Design with modern layouts</li>
-                <li>Original Background Image and Video created using AI Tools</li>
+                <li>Original Background Image Using MidJourney AI tool</li>
+                <li>Original Background Video Using Runway AI tool</li>
             </ul>
             <h2>Want to See More?</h2>
             <p>If you're interested in exploring more of my work or collaborating on a project, check out my GitHub:</p>
