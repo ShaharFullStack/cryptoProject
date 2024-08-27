@@ -12,13 +12,62 @@ export function handleSwitchChange() {
             // Check if the limit of 5 coins is exceeded
             if (selectedCoins.length < 5) {
                 selectedCoins.push(coin);
+
             } else {
-                showToast('You can select up to 5 coins for Live Reports.');
-                this.checked = false;
+                // Temporarily select the sixth coin
+                this.checked;
+                
+                // Show SweetAlert2 dialog
+                Swal.fire({
+                    title: 'You can only select 5 coins',
+                    text: 'Please remove a coin before selecting another.',
+                    icon: 'error',
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                    confirmButtonText: 'Remove a coin',
+                }).then((coinRemoved) => {
+                    if (coinRemoved.isConfirmed) {
+                        showCoinDeselectOptions(coin);
+                    } else {
+                        // Deselect the sixth coin if the user cancels
+                        const lastchecked =this.checked = false;
+                    }
+                });
             }
         } else {
             // Remove the coin if it's unselected
             selectedCoins = selectedCoins.filter(c => c !== coin);
+        }
+    });
+}
+
+// Function to show options for deselecting a coin
+export function showCoinDeselectOptions(newCoin) {
+    const options = selectedCoins.map(coin => `<li class="list-group-item selectable-coin">${coin}</li>`).join('');
+
+    Swal.fire({
+        title: 'Choose a coin to remove',
+        html: `<ul class="list-group">${options}</ul>`,
+        showCancelButton: false,
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        didOpen: () => {
+            // Add click event listeners to the list items
+            $('.selectable-coin').on('click', function () {
+                const coinToRemove = $(this).text();
+                if(!coinToRemove) {
+                    $(`.coin-switch[data-coin="${selectedCoins.slice(0, -1)}]`);
+                }
+                // Remove the selected coin
+                selectedCoins = selectedCoins.filter(c => c !== coinToRemove);
+                // Add the new coin
+                selectedCoins.push(newCoin);
+                // Update the checkbox states
+                $(`.coin-switch[data-coin="${coinToRemove}"]`).prop('checked', false);
+                Swal.close();
+            });
+
         }
     });
 }
@@ -28,7 +77,6 @@ function renderCoinInfo(data) {
     if (!data || !data.market_data || !data.image) {
         return '<p>Coin information is not available at the moment.</p>';
     }
-
     const usdPrice = formatCurrency(data.market_data.current_price.usd, 'USD', 'en-US');
     const eurPrice = formatCurrency(data.market_data.current_price.eur, 'EUR', 'en-EU');
     const ilsPrice = formatCurrency(data.market_data.current_price.ils, 'ILS', 'he-IL');
@@ -45,7 +93,6 @@ export function displayCoins(coins) {
     const coinsListHtml = coins.map(coin => createCoinCard(coin)).join('');
     $('#filtered-coins-list').html(coinsListHtml);
 
-    // Attach necessary event listeners to the newly rendered cards
     handleSwitchChange();
     $('.more-info').click(function () {
         handleMoreInfo($(this).data('coin-id'));
@@ -53,7 +100,7 @@ export function displayCoins(coins) {
 }
 
 // Show toast notifications
-export function showToast(message) {
+export function showToast(message) {    
     const toastElement = $('#coin-limit-toast');
     $('.toast-body').text(message);
     const toast = new bootstrap.Toast(toastElement);
@@ -110,6 +157,7 @@ export function showSelectedCoins() {
     }
 }
 
+// Create and display a coin card
 export function createCoinCard(coin) {
     const isChecked = selectedCoins.includes(coin.symbol.toUpperCase()) ? 'checked' : '';
     return `
@@ -130,9 +178,9 @@ export function createCoinCard(coin) {
                             <div class="card card-body" id="info-${coin.id}">
                             <!-- Additional info will be loaded here -->
                             </div>
-                            </div><br>
-                            <button class="btn btn-info more-info" data-coin-id="${coin.id}">More Info</button>
-                            </div>
+                        </div><br>
+                        <button class="btn btn-info more-info" data-coin-id="${coin.id}">More Info</button>
+                    </div>
                 </div>
             </div>
         </div>`;
